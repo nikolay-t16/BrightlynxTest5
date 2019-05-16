@@ -16,3 +16,10 @@ cd server
 npm install
 node server.js
 ```
+
+В качестве базы использовал mysql запущенный на open server
+user = "root"
+password = ""
+db = "test"
+
+Дамп базы в файле server\test.sql
