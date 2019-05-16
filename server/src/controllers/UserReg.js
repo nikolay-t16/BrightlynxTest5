@@ -1,8 +1,7 @@
 const userModel = require('../model/UserModel.js');
 
 const reg = async function (ctx) {
-	console.log(ctx.request.body.name);
-	return result = await userModel.reg("test","test@test.ru","test");
+	return result = await userModel.reg(ctx.request.body.name, ctx.request.body.email, ctx.request.body.password);
 }
 
 module.exports = reg;

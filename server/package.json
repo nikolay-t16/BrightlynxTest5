@@ -6,6 +6,7 @@
   "dependencies": {
     "eslint": "^5.16.0",
     "koa": "^2.7.0",
+    "koa-body-parser": "^1.1.2",
     "koa-cors": "^0.0.16",
     "koa-json": "^2.0.2",
     "koa-mysql": "^1.0.3",

@@ -30,11 +30,11 @@ const getList = async function () {
 	await (async () => {
 		try {
 			let rows = await query('SELECT id, name, email FROM `user`');
-
-			rows = rows.map(function (item) {
+			//Пытался сделать xor шифрование для того что бы не хранить в базе email в открытом доступе, но после этого в базе данных перестает искать по email
+			/*rows = rows.map(function (item) {
 				item.email = crypt(item.email);
 				return item;
-			});
+			});*/
 			res = rows;
 		} catch (e) {
 			res = [];
@@ -51,8 +51,10 @@ const reg = async function (name, email, password) {
 		error += "Введите E-mail. ";
 	if (password == "")
 		error += "Введите пароль ";
-	email = crypt(email);
-	if ( await isUserExist(email))
+	//Пытался сделать xor шифрование для того что бы не хранить в базе email в открытом доступе, но после этого в базе данных перестает искать по email
+	//email = crypt(email);
+
+	if (await isUserExist(email))
 		error += "Пользователь с таким E-mail уже зарегистрирован";
 	if (error != "") {
 		return {
@@ -92,14 +94,15 @@ const auth = async function (email, password) {
 			error: error
 		}
 	}
-	email = crypt(email);
+	//Пытался сделать xor шифрование для того что бы не хранить в базе email в открытом доступе, но после этого в базе данных перестает искать по email
+	//email = crypt(email);
 	var res;
 	//Создание асинхронной функции из db.query
 	const query = util.promisify(db.query).bind(db);
 	await (async () => {
 		try {
 			const row = await query('SELECT id, name, email FROM `user` WHERE email = ? AND password = ? limit 1', [email, password]);
-			if(row.length > 0){
+			if (row.length > 0) {
 				res = {
 					result: true
 				}

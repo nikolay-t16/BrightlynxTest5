@@ -1,7 +1,8 @@
 <template>
 	<div>
 	<div class="row" v-for="item in users">
-		Id:{{item.id}}; Имя: {{item.name}}
+		<!-- не понял почему в item попадает элемент вида [{}] вместо {} -->
+		Id:{{item[0].id}}; Имя: {{item[0].name}} E-mail: {{item[0].name}}
 	</div>
 	</div>
 </template>
@@ -11,7 +12,7 @@
 	import axios from 'axios'
 	import VueAxios from 'vue-axios'
 
-	Vue.use(VueAxios, axios)
+	Vue.use(VueAxios, axios);
 	export default {
 		name: "List",
 		data: function () {
