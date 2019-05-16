@@ -1,5 +1,5 @@
 'use strict';
-const api = require('./routes/api');
+const api = require('./src/routes/api');
 const Koa = require( 'koa');
 const cors = require('koa-cors');
 
